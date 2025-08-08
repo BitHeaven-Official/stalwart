@@ -19,6 +19,7 @@ use smtp::{StartQueueManager, core::SmtpSessionManager};
 use std::time::Duration;
 use trc::Collector;
 use utils::wait_for_shutdown;
+use rustls::crypto::{ring, CryptoProvider};
 
 #[cfg(not(target_env = "msvc"))]
 use jemallocator::Jemalloc;
@@ -31,6 +32,7 @@ static GLOBAL: Jemalloc = Jemalloc;
 async fn main() -> std::io::Result<()> {
     // Load config and apply macros
     let mut init = Box::pin(BootManager::init()).await;
+    let _ = CryptoProvider::install_default(ring::default_provider());
 
     // Migrate database
     if let Err(err) = migration::try_migrate(&init.inner.build_server()).await {
