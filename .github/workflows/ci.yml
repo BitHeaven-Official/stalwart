@@ -46,11 +46,6 @@ jobs:
         run: |
           cargo install cross --git https://github.com/cross-rs/cross
 
-      - name: Update Cargo.lock for RISC-V compatibility
-        run: |
-          # Update dependencies to ensure RISC-V support (especially ring crate)
-          cargo update
-
       - name: Patch ring for RISC-V support if needed
         run: |
           # Create a .cargo/config.toml to use a RISC-V compatible ring fork if ring 0.16.x is used
