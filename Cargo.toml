@@ -28,6 +28,9 @@ members = [
     "tests",
 ]
 
+[patch.crates-io]
+ring = "0.17"
+
 [profile.dev]
 opt-level = 0
 debug = 1
