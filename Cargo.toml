@@ -29,7 +29,7 @@ members = [
 ]
 
 [patch.crates-io]
-ring = { git = "https://github.com/briansmith/ring", tag = "release-branch/0.17.12" }
+ring = { git = "https://github.com/briansmith/ring", rev = "161ad3cf1ea0cbaae614a68a22b14726def267af" }
 
 [profile.dev]
 opt-level = 0
