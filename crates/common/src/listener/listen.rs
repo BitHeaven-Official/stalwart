@@ -363,6 +363,7 @@ impl ServerInstance {
         stream: T,
         session_id: u64,
     ) -> Result<TlsStream<T>, ()> {
+        let _ = rustls::crypto::ring::default_provider().install_default().expect("Failed to install rustls crypto provider");
         match &self.acceptor {
             TcpAcceptor::Tls { acceptor, .. } => match acceptor.accept(stream).await {
                 Ok(stream) => {
