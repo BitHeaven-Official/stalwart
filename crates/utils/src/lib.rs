@@ -295,6 +295,7 @@ pub async fn wait_for_shutdown() {
 }
 
 pub fn rustls_client_config(allow_invalid_certs: bool) -> ClientConfig {
+    let _ = rustls::crypto::ring::default_provider().install_default().expect("Failed to install rustls crypto provider");
     let config = ClientConfig::builder();
 
     if !allow_invalid_certs {
